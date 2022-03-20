@@ -9,9 +9,9 @@ app.options('*',cors()); // start everything using cors for cross orgin data pas
 require("dotenv").config({path:__dirname + '/.env'});
 
 
-const api = process.env.API_URL;
-const authJwt = require(`./helpers/jwt`);
-const errorHandler = require(`./helpers/error-handler`);
+// const api = process.env.API_URL;
+// const authJwt = require(`./helpers/jwt`);
+// const errorHandler = require(`./helpers/error-handler`);
 
 //middlewares
 app.use(express.json());
@@ -22,22 +22,24 @@ app.use(morgan('tiny'));//for some clear logs more effiecient
 // //         res.status(500).json({message:err})
 // //     }
 // // })
- app.use(errorHandler);
+//app.use(errorHandler);
 //Routers
-app.use(`${api}/users/`,userRoutes);
+//app.use(`${api}/users/`,userRoutes);
 //Database Connection
-const mongodbURL = process.env['MONGO_DB_URL'];
-mongoose.connect(`${mongodbURL}`,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-    dbName:'Hackathon'
+// const mongodbURL = process.env['MONGO_DB_URL'];
+// mongoose.connect(`${mongodbURL}`,{
+//     useNewUrlParser:true,
+//     useUnifiedTopology:true,
+//     dbName:'Hackathon'
+// })
+// .then(()=>{
+//     console.log(`Database Connected`);
+// }).catch((err)=>{
+//     console.log(`Database not connected Error Occured`);
+//     console.log(`Error :> ${err}`);
+// });
+app.post("/api/uploadfile",(req,res)=>{
+    console.log(req.body);
 })
-.then(()=>{
-    console.log(`Database Connected`);
-}).catch((err)=>{
-    console.log(`Database not connected Error Occured`);
-    console.log(`Error :> ${err}`);
-});
-
 const PORT = process.env.PORT || 4000;
 app.listen(PORT,console.log(`Server running on port ${PORT}`));

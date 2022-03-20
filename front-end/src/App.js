@@ -7,7 +7,7 @@ import MainPage from './Components/MainPage';
 function App() {
   return (
     <div>
-      <RegisterPage/>
+      <MainPage/>
     </div>
   );
 }
